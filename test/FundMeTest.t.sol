@@ -15,6 +15,7 @@ contract FundMeTest is Test {
         assertEq(fundme.MINIMUM_USD(), 5e18);
     }
 
+    // check if the deployer is the same person as the sender
     function checkIfDeployerIsOwner() public{
         assertEq(fundme.i_owner(), address(this));
     }
