@@ -14,4 +14,8 @@ contract FundMeTest is Test {
     function testMinimumUsdIsFive() public {
         assertEq(fundme.MINIMUM_USD(), 5e18);
     }
+
+    function checkIfDeployerIsOwner() public{
+        assertEq(fundme.i_owner(), address(this));
+    }
 }
