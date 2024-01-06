@@ -19,4 +19,9 @@ contract FundMeTest is Test {
     function checkIfDeployerIsOwner() public{
         assertEq(fundme.i_owner(), address(this));
     }
+
+    function testPriceFeedVersionIsAccurate() public{
+        uint256 version = fundme.getVersion();
+        assertEq(version, 4);
+    }
 }
