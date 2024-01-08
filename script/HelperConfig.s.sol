@@ -1,23 +1,38 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^.0.18.19
+pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
 
 contract HelperConfig is Script{
+    NetworkConfig public networkConfig;
 
-    struct NetworkConfig {
+    constructor(){
+        if(block.chainid == 11155111){
+            networkConfig = getSepoliaEthConfig();
+        }else{
+            networkConfig = getAnvilEthConfig();
+        }
+    }
+
+    struct NetworkConfig  {
         address priceFeed; // Eth/USD price feed address
     }
 
-    function getSepoliaEthConfig() public pure returns (NetworkConfig){
-        // priceFeed address
-        NetworkConfig sepoliaConfig = NetworkConfig({
-            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
-        })
+    function getNetworkConfig() public view returns(NetworkConfig memory) {
+    return networkConfig;
     }
 
-    function getAnvilEthConfig() public pure returns (NetworkConfig) {
+
+    function getSepoliaEthConfig() public pure returns (NetworkConfig memory ){
+        // priceFeed address
+        NetworkConfig memory sepoliaConfig = NetworkConfig({
+            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
+        });
+        return sepoliaConfig;
+    }
+
+    function getAnvilEthConfig() public pure returns (NetworkConfig memory) {
         
     }
 }
