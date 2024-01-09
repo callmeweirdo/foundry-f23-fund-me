@@ -10,9 +10,13 @@ contract HelperConfig is Script{
     constructor(){
         if(block.chainid == 11155111){
             networkConfig = getSepoliaEthConfig();
-        }else{
+        }else if(block.chainid == 1){
+            networkConfig = getEthMainetConfig();
+        }
+        else{
             networkConfig = getAnvilEthConfig();
         }
+        
     }
 
     struct NetworkConfig  {
@@ -32,10 +36,11 @@ contract HelperConfig is Script{
         return sepoliaConfig;
     }
 
-    function getEthMainetConfig() public returns(NetworkConfig memory){
+    function getEthMainetConfig() public pure returns(NetworkConfig memory){
         NetworkConfig memory ethMainetConfig = NetworkConfig({
-            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
+            priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
         });
+        return ethMainetConfig;
     }
 
     function getAnvilEthConfig() public pure returns (NetworkConfig memory) {
