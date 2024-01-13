@@ -57,7 +57,7 @@ contract FundMe {
         require(callSuccess, "Call failed");
     }
 
-    function cheapWithdraw() public {
+    function cheapWithdraw() public onlyOwner {
         
     }
     
