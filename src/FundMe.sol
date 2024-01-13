@@ -56,6 +56,10 @@ contract FundMe {
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
     }
+
+    function cheapWithdraw() public {
+        
+    }
     
 
     fallback() external payable {
@@ -77,6 +81,7 @@ contract FundMe {
     function getOwner() external view returns (address) {
         return i_owner;
     }
+    
 
 }
 
