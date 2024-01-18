@@ -81,11 +81,7 @@ contract FundMe {
     function getOwner() external view returns (address) {
         return i_owner;
     }
-    
-
-}
-
-// Concepts we didn't cover yet (will cover in later sections)
+    // Concepts we didn't cover yet (will cover in later sections)
 // 1. Enum
 // 2. Events
 // 3. Try / Catch
@@ -93,3 +89,6 @@ contract FundMe {
 // 5. abi.encode / decode
 // 6. Hash with keccak256
 // 7. Yul / Assembly
+
+}
+
