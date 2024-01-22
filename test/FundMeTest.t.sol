@@ -101,4 +101,24 @@ contract FundMeTest is Test {
         assert(address(fundMe).balance == 0);
         assert(startOwnerBalance + startContractBalace == fundMe.getOwner().balance);
     }
+
+    function testWithdrawWithMultipleFundersCheaper() public funded {
+        uint160 numberOfFunders = 10;
+        uint160 indexOfFunders = 1;
+
+        for(uint160 i = indexOfFunders; i < numberOfFunders; i++){
+            hoax(address(i), SEND_VALUE);
+            fundMe.fund{value: SEND_VALUE}();
+        }
+
+        uint256 startOwnerBalance = fundMe.getOwner().balance;
+        uint256 startContractBalace = address(fundMe).balance;
+
+        vm.startPrank(fundMe.getOwner());
+        fundMe.cheapWithdraw();
+        vm.stopPrank();
+
+        assert(address(fundMe).balance == 0);
+        assert(startOwnerBalance + startContractBalace == fundMe.getOwner().balance);
+    }
 }
