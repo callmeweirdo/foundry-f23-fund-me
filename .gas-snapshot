@@ -1,1 +1,9 @@
-FundMeTest:testWithdrawWithMultipleFunders() (gas: 489930);
+FundMeTest:testAddressFunderToArrayOfFunders() (gas: 99736)
+FundMeTest:testFundFailWithoutEnoughEth() (gas: 22989)
+FundMeTest:testFundUpdatesFundedDataStructure() (gas: 99432)
+FundMeTest:testMinimumUsdIsFive() (gas: 5425)
+FundMeTest:testOnlyOwnerCanWithdraw() (gas: 101575)
+FundMeTest:testPriceFeedVersionIsAccurate() (gas: 14379)
+FundMeTest:testWithdrawWithASingleFunder() (gas: 86433)
+FundMeTest:testWithdrawWithMultipleFunders() (gas: 490176)
+FundMeTest:testWithdrawWithMultipleFundersCheaper() (gas: 489328)
