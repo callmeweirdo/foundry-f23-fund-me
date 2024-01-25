@@ -9,10 +9,21 @@ import {FundMe} from "../src/FundMe.sol";
 contract FundFundMe is Script{
     uint256 constant SEND_VALUE = 1 ether;
     
+    // function fundFundMe(address mostRecentlyDeployed) public {
+    //     FundMe(payable(mostRecentlyDeployed)).fund{value: SEND_VALUE}();
+    //     console.log("funded the FundMe with the value of", SEND_VALUE);
+    // }
+
     function fundFundMe(address mostRecentlyDeployed) public {
-        FundMe(payable(mostRecentlyDeployed)).fund{value: SEND_VALUE}();
-        console.log("funded the FundMe with the value of", SEND_VALUE);
-    }
+    FundMe fundMeInstance = FundMe(payable(mostRecentlyDeployed));
+    uint256 balance = fundMeInstance.getOwner().balance;
+    require(balance > 0, "Not enough funds to fund the contract");
+    uint256 valueToSend = balance > SEND_VALUE ? SEND_VALUE : balance; // Send the smaller of the two amounts
+    fundMeInstance.fund{value: valueToSend}();
+    console.log("funded the FundMe with the value of", valueToSend);
+}
+
+
 
     function run() public {
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("FundMe", block.chainid);
