@@ -12,11 +12,19 @@ contract FundMeTest is Test {
     uint256 constant SEND_VALUE = 0.1 ether;
     uint256 constant STARTING_AMOUNT = 10 ether;
 
-    function setUp() external {
-        DeployFundMde deployFundMe = new DeployFundMde();
-        fundMe = deployFundMe.run();
-        vm.deal(USER, STARTING_AMOUNT);
-    }
+    // function setUp() external {
+    //     DeployFundMde deployFundMe = new DeployFundMde();
+    //     fundMe = deployFundMe.run();
+    //     vm.deal(USER, STARTING_AMOUNT);
+    // }
+
+    function setUp() public {
+    DeployFundMde deployFundMe = new DeployFundMde();
+    // vm.prank(USER);
+    vm.deal(USER, STARTING_AMOUNT * 10); // Increase the amount of Ether dealt to the USER account
+    fundMe = deployFundMe.run();
+}
+
 
     function testMinimumUsdIsFive() public {
         assertEq(fundMe.MINIMUM_USD(), 5e18);
